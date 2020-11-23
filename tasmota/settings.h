@@ -327,6 +327,13 @@ typedef struct {
   uint8_t dpid = 0;
 } TuyaFnidDpidMap;
 
+typedef struct {
+  uint32_t address = 0;
+  uint16_t rolling_code = 0;
+} SomfyRemoteSettings;
+
+
+
 const uint32_t settings_text_size = 699;   // Settings.text_pool[size] = Settings.display_model (2D2) - Settings.text_pool (017)
 const uint8_t MAX_TUYA_FUNCTIONS = 16;
 
@@ -342,7 +349,7 @@ struct {
   int8_t        timezone;                  // 016
 
   // Start of char array storing all parameter strings ********
-
+  
   char          text_pool[101];            // 017  Was ota_url[101] - size is settings_text_size
 
   char          ex_mqtt_prefix[3][11];     // 07C  Free since 8.0.0.1
@@ -378,6 +385,7 @@ struct {
   char          ex_mqtt_grptopic[33];      // 2B1
 
   // End of single char array of 698 chars max ****************
+  SomfyRemoteSettings somfyRemoteSettings[MAX_SOMFY_REMOTES];
 
   uint8_t       display_model;             // 2D2
   uint8_t       display_mode;              // 2D3
@@ -642,8 +650,9 @@ struct {
   uint16_t      shd_warmup_brightness;     // F5C
   uint8_t       shd_warmup_time;           // F5E
 
-  uint8_t       free_f5e[72];              // F5E - Decrement if adding new Setting variables just above and below
-
+  //uint8_t       free_f5e[84-6*MAX_SOMFY_REMOTES];              // F5E - Decrement if adding new Setting variables just above and below
+  uint8_t       free_f5e[42];              // F5E - Decrement if adding new Setting variables just above and below
+    
   // Only 32 bit boundary variables below
 
   uint64_t      rf_protocol_mask;          // FA8
@@ -667,6 +676,10 @@ struct {
   uint32_t      i2c_drivers[3];            // FEC  I2cDriver
   uint32_t      cfg_timestamp;             // FF8
   uint32_t      cfg_crc32;                 // FFC
+
+
+
+
 } Settings;
 
 typedef struct {

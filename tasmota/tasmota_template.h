@@ -619,6 +619,10 @@ const uint16_t kGpioNiceList[] PROGMEM = {
   AGPIO(GPIO_RC522_RST),       // RC522 Rfid reset
 #endif
 
+#ifdef USE_SOMFY
+  AGPIO(GPIO_CC1101_GDO0),   // CC1101 pin for TX
+#endif
+
 /*-------------------------------------------------------------------------------------------*\
  * ESP32 specifics
 \*-------------------------------------------------------------------------------------------*/
@@ -1238,7 +1242,7 @@ const uint16_t kGpioConvert[] PROGMEM = {
   AGPIO(GPIO_IEM3000_TX),     // IEM3000 Serial interface
   AGPIO(GPIO_IEM3000_RX),     // IEM3000 Serial interface
   AGPIO(GPIO_ZIGBEE_RST),     // Zigbee reset
-  AGPIO(GPIO_DYP_RX)
+  AGPIO(GPIO_DYP_RX),
 };
 
 /********************************************************************************************/
