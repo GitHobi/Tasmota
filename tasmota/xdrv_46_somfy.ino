@@ -264,8 +264,8 @@ void prepareCC1101() {
   ELECHOUSE_cc1101.setCCMode(0);
   ELECHOUSE_cc1101.setModulation(2);  // set modulation mode ASK/OOK
   // ELECHOUSE_cc1101.setChsp(350.00);
-  // ELECHOUSE_cc1101.setDRate(828);         // Set the Data Rate in kBaud.
-  // ELECHOUSE_cc1101.setPA(10);             // might be important to increase radio power
+  ELECHOUSE_cc1101.setDRate(828);         // Set the Data Rate in kBaud.
+  //ELECHOUSE_cc1101.setPA(10);             // might be important to increase radio power
   ELECHOUSE_cc1101.setMHZ(433.42);
   ELECHOUSE_cc1101.setPktFormat(1);  // Data on GDO0
   ELECHOUSE_cc1101.SetTx();
@@ -296,7 +296,7 @@ void Cmd(byte cmdCode)
   
   prepareCC1101();
  
-  AddLog_P(LOG_LEVEL_DEBUG_MORE, PSTR("Sending 0x%02x using remote 0x%06x. Current Somfy Rolling Code: 0x%x"), cmdCode, Settings.somfyRemoteSettings[slot].address, Settings.somfyRemoteSettings[slot].rolling_code);
+  AddLog_P(LOG_LEVEL_INFO, PSTR("Sending 0x%02x using remote 0x%06x. Current Somfy Rolling Code: 0x%x"), cmdCode, Settings.somfyRemoteSettings[slot].address, Settings.somfyRemoteSettings[slot].rolling_code);
 
   somfysetup();
   BuildFrame(frame, cmdCode, Settings.somfyRemoteSettings[slot].rolling_code, Settings.somfyRemoteSettings[slot].address);
