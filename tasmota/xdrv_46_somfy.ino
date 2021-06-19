@@ -37,7 +37,7 @@
 #define XDRV_46 46
 
 /*********************************************************************************************\
- * Send Somfy RTS commands via a connected 433MHz transmitter module
+ * Send Somfy RTS commands via a connected 433MHz transmitter module!
 \*********************************************************************************************/
 const char kSomfyCommands[] PROGMEM = "Somfy|" // prefix
   "Up|Down|Stop|Prog|Set|Values";
